@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	i := getInput("sample_input.txt")
+	i := getInput("input.txt")
 	partOneAnswer := partOne(i)
 	// partTwoAnswer := partTwo(i)
 
@@ -49,8 +49,18 @@ func partOne(i []string) int {
 }
 
 func passwordIsValid(min, max int, letter, password string) bool {
-	fmt.Printf("%v\n%v\n%v\n%v\n", letter, min, max, password)
-	return true
+	var letterCount int
+	for _, l := range password {
+		if string(l) == letter {
+			letterCount++
+		}
+	}
+
+	if min <= letterCount && letterCount <= max {
+		return true
+	}
+
+	return false
 }
 
 // func partTwo(i []string) int {
