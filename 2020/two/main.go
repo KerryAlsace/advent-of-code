@@ -10,10 +10,10 @@ import (
 func main() {
 	i := getInput("input.txt")
 	partOneAnswer := partOne(i)
-	// partTwoAnswer := partTwo(i)
+	partTwoAnswer := partTwo(i)
 
 	fmt.Println(partOneAnswer)
-	// fmt.Println(partTwoAnswer)
+	fmt.Println(partTwoAnswer)
 }
 
 func getInput(fileName string) []string {
@@ -26,6 +26,14 @@ func getInput(fileName string) []string {
 }
 
 func partOne(i []string) int {
+	return iterator(i, passwordIsValidPartOne)
+}
+
+func partTwo(i []string) int {
+	return iterator(i, passwordIsValidPartTwo)
+}
+
+func iterator(i []string, checker func(min, max int, letter, password string) bool) int {
 	var correctCount int
 
 	for _, s := range i {
@@ -40,7 +48,7 @@ func partOne(i []string) int {
 			panic("invalid input")
 		}
 
-		if passwordIsValid(min, max, strings.TrimRight(parts[1], ":"), parts[2]) {
+		if checker(min, max, strings.TrimRight(parts[1], ":"), parts[2]) {
 			correctCount++
 		}
 	}
@@ -48,7 +56,7 @@ func partOne(i []string) int {
 	return correctCount
 }
 
-func passwordIsValid(min, max int, letter, password string) bool {
+func passwordIsValidPartOne(min, max int, letter, password string) bool {
 	var letterCount int
 	for _, l := range password {
 		if string(l) == letter {
@@ -56,13 +64,22 @@ func passwordIsValid(min, max int, letter, password string) bool {
 		}
 	}
 
-	if min <= letterCount && letterCount <= max {
-		return true
-	}
-
-	return false
+	return min <= letterCount && letterCount <= max
 }
 
-// func partTwo(i []string) int {
-// 	return 0
-// }
+func passwordIsValidPartTwo(min, max int, letter, password string) bool {
+	var letterCount int
+
+	firstIndex := min - 1
+	secondIndex := max - 1
+
+	if string(password[firstIndex]) == letter {
+		letterCount++
+	}
+
+	if string(password[secondIndex]) == letter {
+		letterCount++
+	}
+
+	return letterCount == 1
+}
