@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	i := getInput("input.txt")
+	i := getInput("sample_input.txt")
 	partOneAnswer := partOne(i)
 
 	fmt.Println(partOneAnswer)
@@ -23,5 +23,8 @@ func getInput(fileName string) []string {
 }
 
 func partOne(i []string) string {
+	for _, s := range i {
+		fmt.Println(s)
+	}
 	return ""
 }
