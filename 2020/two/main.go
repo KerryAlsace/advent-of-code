@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"strconv"
 	"strings"
 )
 
@@ -29,16 +30,27 @@ func partOne(i []string) int {
 
 	for _, s := range i {
 		parts := strings.Split(s, " ")
-		letter := strings.TrimRight(parts[1], ":")
 		minMax := strings.Split(parts[0], "-")
-		min := minMax[0]
-		max := minMax[1]
-		password := parts[2]
+		min, err := strconv.Atoi(minMax[0])
+		if err != nil {
+			panic("invalid input")
+		}
+		max, err := strconv.Atoi(minMax[1])
+		if err != nil {
+			panic("invalid input")
+		}
 
-		fmt.Printf("%s\n%s\n%s\n%s\n", letter, min, max, password)
+		if passwordIsValid(min, max, strings.TrimRight(parts[1], ":"), parts[2]) {
+			correctCount++
+		}
 	}
 
 	return correctCount
+}
+
+func passwordIsValid(min, max int, letter, password string) bool {
+	fmt.Printf("%v\n%v\n%v\n%v\n", letter, min, max, password)
+	return true
 }
 
 // func partTwo(i []string) int {
