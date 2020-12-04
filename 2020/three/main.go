@@ -30,34 +30,6 @@ func getInput(fileName string) []string {
 	return strings.Split(string(b), "\n")
 }
 
-// func partOne(i []string) int {
-// 	spacesRight := 0
-// 	totalTrees := 0
-
-// 	for _, row := range i {
-// 		if len(row) <= spacesRight {
-// 			spacesRight = (spacesRight - (len(row) - 1)) - 1
-// 			fmt.Println(row)
-// 			continue
-// 		}
-
-// 		x := row[spacesRight]
-
-// 		newRow := strings.Split(row, "")
-
-// 		if string(x) == "#" {
-// 			newRow[spacesRight] = "X"
-// 		} else {
-// 			newRow[spacesRight] = "0"
-// 		}
-
-// 		spacesRight += 3
-// 		fmt.Println(strings.Join(newRow, ""))
-// 	}
-
-// 	return totalTrees
-// }
-
 func partOne(i []string) int {
 	spacesRight := 0
 	totalTrees := 0
