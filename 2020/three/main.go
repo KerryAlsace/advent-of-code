@@ -10,7 +10,7 @@ import (
 // sample_input_two ans part 1 is 4;
 
 // guessed 95, guessed 72, guessed 100;
-// input ans part 1 is 216; part 2 is
+// input ans part 1 is 216; part 2 is 6708199680;
 
 func main() {
 	i := getInput("input.txt")
@@ -30,11 +30,36 @@ func getInput(fileName string) []string {
 	return strings.Split(string(b), "\n")
 }
 
-func partOne(i []string) int {
+// func partOne(i []string) int {
+// 	spacesRight := 0
+// 	totalTrees := 0
+
+// 	for _, row := range i {
+// 		if len(row) <= spacesRight {
+// 			spacesRight = (spacesRight - (len(row) - 1)) - 1
+// 		}
+
+// 		x := row[spacesRight]
+
+// 		if string(x) == "#" {
+// 			totalTrees++
+// 		}
+
+// 		spacesRight += 3
+// 	}
+
+// 	return totalTrees
+// }
+
+func toboggan(right, down int, input []string) int {
 	spacesRight := 0
 	totalTrees := 0
 
-	for _, row := range i {
+	for i, row := range input {
+		if down == 2 && i%2 != 0 {
+			continue
+		}
+
 		if len(row) <= spacesRight {
 			spacesRight = (spacesRight - (len(row) - 1)) - 1
 		}
@@ -45,14 +70,10 @@ func partOne(i []string) int {
 			totalTrees++
 		}
 
-		spacesRight += 3
+		spacesRight += right
 	}
 
 	return totalTrees
-}
-
-func toboggan(right, down int, input []string) int {
-	return 2
 }
 
 func partTwo(i []string) int {
