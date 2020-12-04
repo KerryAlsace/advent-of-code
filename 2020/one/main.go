@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+// sample input part 1 ans is 514579; part 2 is 276650720
+
 func main() {
 	i := getInput("input.txt")
 	partOneAnswer := partOne(i)
