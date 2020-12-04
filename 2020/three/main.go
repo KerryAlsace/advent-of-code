@@ -9,10 +9,10 @@ import (
 // sample_input ans part 1 is 7; part 2 is
 // sample_input_two ans part 1 is 1;
 
-// guessed 95, guessed 72
+// guessed 95, guessed 72, guessed 100
 
 func main() {
-	i := getInput("input.txt")
+	i := getInput("sample_input_two.txt")
 	partOneAnswer := partOne(i)
 	// partTwoAnswer := partTwo(i)
 
@@ -35,7 +35,7 @@ func partOne(i []string) int {
 
 	for _, row := range i {
 		if len(row) <= spacesRight {
-			spacesRight = spacesRight - (len(row) - 2)
+			spacesRight = (spacesRight - (len(row) - 1)) - 1
 			continue
 		}
 
