@@ -7,12 +7,13 @@ import (
 )
 
 // sample_input ans part 1 is 7; part 2 is
-// sample_input_two ans part 1 is 1;
+// sample_input_two ans part 1 is 4;
 
-// guessed 95, guessed 72, guessed 100
+// guessed 95, guessed 72, guessed 100;
+// input ans part 1 is 216; part 2 is
 
 func main() {
-	i := getInput("sample_input_two.txt")
+	i := getInput("input.txt")
 	partOneAnswer := partOne(i)
 	// partTwoAnswer := partTwo(i)
 
@@ -29,6 +30,34 @@ func getInput(fileName string) []string {
 	return strings.Split(string(b), "\n")
 }
 
+// func partOne(i []string) int {
+// 	spacesRight := 0
+// 	totalTrees := 0
+
+// 	for _, row := range i {
+// 		if len(row) <= spacesRight {
+// 			spacesRight = (spacesRight - (len(row) - 1)) - 1
+// 			fmt.Println(row)
+// 			continue
+// 		}
+
+// 		x := row[spacesRight]
+
+// 		newRow := strings.Split(row, "")
+
+// 		if string(x) == "#" {
+// 			newRow[spacesRight] = "X"
+// 		} else {
+// 			newRow[spacesRight] = "0"
+// 		}
+
+// 		spacesRight += 3
+// 		fmt.Println(strings.Join(newRow, ""))
+// 	}
+
+// 	return totalTrees
+// }
+
 func partOne(i []string) int {
 	spacesRight := 0
 	totalTrees := 0
@@ -36,7 +65,6 @@ func partOne(i []string) int {
 	for _, row := range i {
 		if len(row) <= spacesRight {
 			spacesRight = (spacesRight - (len(row) - 1)) - 1
-			continue
 		}
 
 		x := row[spacesRight]
