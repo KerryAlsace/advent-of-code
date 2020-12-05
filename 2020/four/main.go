@@ -26,23 +26,27 @@ func getInput(fileName string) []string {
 
 func formatInput(i []string) []string {
 	var newInput []string
-	currentIndex := 0
+	firstLineOfLastInput := 0
 	lastLineOfLastInput := 0
 	for index, line := range i {
-		fmt.Println("here's the line")
-		fmt.Println(line)
-		if line == "" {
-			fmt.Println("line == ''")
-			fmt.Printf("index is %v line is %s\n", index, line)
-			lastLineOfLastInput = index - 1
-
-			var sb strings.Builder
-			for n := 0; n <= lastLineOfLastInput-currentIndex; n++ {
-				fmt.Printf("current index %v\n", currentIndex)
-				sb.WriteString(i[currentIndex])
-				currentIndex++
+		fmt.Printf("index [%v] line [%s]\n", index, line)
+		if line == "" || index == len(i)-1 {
+			if line == "" {
+				lastLineOfLastInput = index - 1
+			} else if index == len(i)-1 {
+				lastLineOfLastInput = index
 			}
 
+			fmt.Printf("lastLineOfLastInput [%v]\n", lastLineOfLastInput)
+
+			var sb strings.Builder
+			for n := 0; n <= lastLineOfLastInput-firstLineOfLastInput; n++ {
+				fmt.Printf("n = [%v] lastlineof [%v], firstline of [%v] lastLineOfLastInput-firstLineOfLastInput = [%v]\n", n, lastLineOfLastInput, firstLineOfLastInput, lastLineOfLastInput-firstLineOfLastInput)
+				sb.WriteString(i[firstLineOfLastInput+n])
+				sb.WriteString("")
+			}
+
+			firstLineOfLastInput = index + 1
 			newInput = append(newInput, sb.String())
 		}
 	}
@@ -51,9 +55,9 @@ func formatInput(i []string) []string {
 }
 
 func partOne(i []string) int {
-	// for _, r := range i {
-	// 	// fmt.Println(r)
-	// }
+	for _, r := range i {
+		fmt.Println(r)
+	}
 	return 0
 }
 
